@@ -3,7 +3,6 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 
 # Dados iniciais (simulação de banco de dados)
-
 produtos = [
 
     {"id": 1, "nome": "Camiseta", "preco": 50.00},
@@ -14,7 +13,6 @@ produtos = [
 
 
 # Rota para listar todos os produtos (GET)
-
 @app.route('/produtos', methods=['GET'])
 
 def listar_produtos():
@@ -34,7 +32,6 @@ def adicionar_produto():
 
 
 # Rota para atualizar um produto existente (PUT)
-
 @app.route('/produtos/<int:id>', methods=['PUT'])
 
 def atualizar_produto(id):
@@ -50,8 +47,8 @@ def atualizar_produto(id):
     produto.update(dados_atualizados)
 
     return jsonify({"mensagem": "Produto atualizado com sucesso!"})
-# Rota para remover um produto (DELETE)
 
+# Rota para remover um produto (DELETE)
 @app.route('/produtos/<int:id>', methods=['DELETE'])
 
 def remover_produto(id):
@@ -69,7 +66,5 @@ def remover_produto(id):
 
 
 # Executa a aplicação
-
 if __name__ == '__main__':
-
     app.run(debug=True)
