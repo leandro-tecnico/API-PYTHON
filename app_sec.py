@@ -36,7 +36,7 @@ def token_requerido(f):
 
         return f(*args, **kwargs)
 
-        return decorator
+    return decorator
 
 
 # Rota para gerar o token JWT (Autenticação)
