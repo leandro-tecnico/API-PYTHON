@@ -19,9 +19,9 @@ def token_requerido(f):
     def decorator(*args, **kwargs):
 
         token = request.headers.get('x-access-token')
-
+        
         if not token:
-
+            #print(token)
             return jsonify({'mensagem': 'Token de acesso é necessário!'}), 401
 
         try:
