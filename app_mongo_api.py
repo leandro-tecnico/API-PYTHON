@@ -1,3 +1,4 @@
+from bson import ObjectId
 from pymongo import MongoClient
 
 from flask import Flask, jsonify, request
@@ -45,40 +46,7 @@ def obter_produto(id):
     else:
         return jsonify({"erro": "Produto não encontrado"}), 404
 
-
 # Rota para atualizar um produto (UPDATE)
-@app.route('/produtos/<id>', methods=['PUT'])
-def atualizar_produto(id):
-
-    dados_atualizados = request.get_json()
-    resultado = produtos_collection.update_one({"_id": ObjectId(id)}, {"$set": dados_atualizados})
-
-# Rota para listar todos os produtos (READ)
-@app.route('/produtos', methods=['GET'])
-def listar_produtos():
-    produtos = list(produtos_collection.find())
-    
-    for produto in produtos:
-        produto['_id'] = str(produto['_id']) # Converter ObjectId para string
-
-    return jsonify(produtos)
-
-
-# Rota para buscar um produto por ID (READ)
-@app.route('/produtos/<id>', methods=['GET'])
-def obter_produto(id):
-
-    produto = produtos_collection.find_one({"_id": ObjectId(id)})
-
-    if produto:
-        produto['_id'] = str(produto['_id'])
-        return jsonify(produto)
-    else:
-        return jsonify({"erro": "Produto não encontrado"}), 404
-
-
-# Rota para atualizar um produto (UPDATE)
-
 @app.route('/produtos/<id>', methods=['PUT'])
 def atualizar_produto(id):
 
