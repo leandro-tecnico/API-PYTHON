@@ -21,7 +21,7 @@ def token_requerido(f):
         token = request.headers.get('x-access-token')
         
         if not token:
-            #print(token)
+            
             return jsonify({'mensagem': 'Token de acesso é necessário!'}), 401
 
         try:
